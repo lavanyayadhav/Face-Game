@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/browse/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+
+    const rootHandle = document.getElementById('root')
+    const users = [
+            { id: 1, name: 'john', profile: 'https://go.aws/3bXmjQo', skills: ['js','react','node'] },
+            { id: 2, name: 'jack', profile: 'https://go.aws/3e2alqe', skills: ['js','react','node'] },
+            { id: 3, name: 'sam', profile: 'https://go.aws/2RfNvlo', skills: ['js','react','node'] },
+        ]
+        
+        function UserList(props){
+            let i = Math.floor(Math.random() * 3)
+            let flag=0, count=0
+            const handleClick = (ele,i)=> {
+                //console.log(ele)
+               const name = prompt('Enter the name')
+               if(name == ele[i].name){
+                    flag=1
+                    alert(`You Guessed correct!!`)
+               } else{
+                   flag=0
+                   alert(`You Guessed Wrong!!, It's ${ele[i].name}`)
+               }
+           }
+
+           function Randomimage(ele){
+            
+            return(ele[i].profile)
+           }
+
+            return(
+                <div>
+                    <h1>Face Game</h1>
+                    <img src={Randomimage(props.data)}></img><br></br>
+                    <button onClick={ () => {handleClick(props.data,i)}}> Guess </button>   
+                    <p> Your points : {flag ? count++ : count--} {count}</p>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<UserList data={users}/>, rootHandle)
+
+    </script>
+</body>
+
+</html>
